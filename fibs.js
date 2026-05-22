@@ -14,4 +14,24 @@ function fibs(number) {
   return sequence;
 }
 
-console.log(fibs(8));
+function fibsRec(number, sequence = [0, 1]) {
+  console.log("This was printed recursively");
+
+  if (number <= 0) return [];
+
+  if (number === 1) return [0];
+
+  if (sequence.length >= number) {
+    return sequence.slice(0, number);
+  }
+
+  const nextNumber =
+    sequence[sequence.length - 1] + sequence[sequence.length - 2];
+
+  sequence.push(nextNumber);
+
+  return fibsRec(number, sequence);
+}
+
+console.log("Iterative:", fibs(8));
+console.log("Recursive:", fibsRec(8));
